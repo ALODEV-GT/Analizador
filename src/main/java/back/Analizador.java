@@ -62,7 +62,23 @@ public class Analizador {
                 this.tipo = TipoToken.ERROR;
             } else if (this.tipo.equals(TipoToken.IDENTIFICADOR) && tipo.equals(TipoCaracter.SIGNO)) {
                 this.tipo = TipoToken.ERROR;
+            } else if (this.tipo.equals(TipoToken.ENTERO)) {
+                if (tipo.equals(TipoCaracter.PUNTO)) {
+                    this.tipo = TipoToken.DECIMAL;
+                } else if (tipo.equals(TipoCaracter.SIGNO) || tipo.equals(TipoCaracter.LETRA)) {
+                    this.tipo = TipoToken.ERROR;
+                }
+            } else if (this.tipo.equals(TipoToken.DECIMAL)) {
+                if (tipo.equals(TipoCaracter.PUNTO) || tipo.equals(TipoCaracter.SIGNO) || tipo.equals(TipoCaracter.LETRA)) {
+                    this.tipo = TipoToken.ERROR;
+                }
+            } else if (this.tipo.equals(TipoToken.SIGNO)) {
+                if (tipo.equals(TipoCaracter.PUNTO) || tipo.equals(TipoCaracter.NUMERO) || tipo.equals(TipoCaracter.LETRA)) {
+                    this.tipo = TipoToken.ERROR;
+                }
             }
+
+        } else {
 
         }
     }
